@@ -16,7 +16,7 @@ public abstract class InitialisationStrategy
 	 * Positions' coordinates are guaranteed to be within [0, size).
 	 * It is NOT necessary to return same positions on each call. (opposite may even be expected of some strategies)
 	 */
-	public abstract Set<Position> getQueenPositions();
+	public abstract int[] getQueenPositions();
 
 	/**
 	 * @param size size of the board and amount of queens to generate.

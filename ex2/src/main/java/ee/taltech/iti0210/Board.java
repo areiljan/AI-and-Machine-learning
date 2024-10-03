@@ -13,6 +13,7 @@ public class Board
 	public Board(InitialisationStrategy strat)
 	{
 		this.size = strat.getSize();
+		this.positions = new int[size];
 	};
 
 	public Board(Board b)
@@ -27,6 +28,18 @@ public class Board
 	public int getSize()
 	{
 		return this.size;
+	}
+
+	public void clear() {
+		positions = new int[size];
+	}
+
+	public void addPosition(int row, int col) {
+		positions[row] = col;
+	}
+
+	public int[] getPositions() {
+		return positions;
 	}
 
 	/**
