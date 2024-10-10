@@ -6,3 +6,6 @@ I created the IntelligentPlayer class that acts as the AI agent in this case. In
 
 The game is playable. I applied time calculations for the problem using 1000 gamesToPlay. The time to solve one turn was average of about 10ms.
 1000 gamesToPlay was also the amount of games after which i did not find any improvement in the skill of the bot.
+
+Even knowing combinatorics I was suprised to learn that the game Connect Four has 4.5 trillion different states. This is still a calculation that can be brute forced by todays computers, but a lot more than I anticipated. This means that 1000 calculations is clearly not enough.
+I tried the game with 1 million gamesToPlay, I did not see any improvement, but the time was 71000ms.
