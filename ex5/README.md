@@ -1,54 +1,29 @@
-# This is the predicate logic reasoning task, using a language similar to PROLOG
-% facts
-east(MORDOR, GONDOR).
-north(ROHAN, GONDOR).
-near(ROHAN, GONDOR).
-near(ROHAN, LOTHLORIEN).
-south(ROHAN, LOTHLORIEN).
-near(MORIA, LOTHLORIEN).
-east(LOTHLORIEN, MORIA).
-near(MORIA, HIGHPASS).
-south(MORIA, HIGHPASS).
-near(RIVENDELL, HIGHPASS).
-west(RIVENDELL, HIGHPASS).
-near(RIVENDELL, BREE).
-east(RIVENDELL, BREE).
-east(BREE, SHIRE).
-near(SHIRE, BREE).
+# Naive Bayes implementation
+This project implements a Naive Bayes classifier to predict the topic of BBC news articles.
 
-% rules
-% symmetry
-north(X, Y) => south(Y, X).
-south(X, Y) => north(Y, X).
-east(X, Y) => west(Y, X).
-west(X, Y) => east(Y, X).
-near(X, Y) => near(Y, X).
-% transitivity
-(north(X, Y) & north(Y, Z)) => north(X, Z).
-(south(X, Y) & south(Y, Z)) => south(X, Z).
-(east(X, Y) & east(Y, Z)) => east(X, Z).
-(west(X, Y) & west(Y, Z)) => west(X, Z).
-(near(X, Y) & near(Y, Z)) => near(X, Z).
+**Text Preprocessing**:
+- All words are converted to lowercase.
+- Words shorter than or equal to 3 characters are removed.
+- Certain punctuation marks are removed.
 
-% tests
--east(MORDOR, SHIRE).
+**Model Training**:
+- Calculated prior probabilities P(c) for each topic.
+- Counted word occurrences in each topic to compute Nw,c.
+- Computed total word counts Nc for each topic.
+- Determined the vocabulary size |V|.
 
-This unfortunately has conflicts in it that I could not solve. 
-I will show symmetry and transistivity in smaller implementations.
-### Symmetry
-east(Gondor, Mordor).
+**Prediction**:
+- For each test article, computed log probabilities log(h(c)) for each topic.
+- Used Laplace smoothing (a.k.a. +1 smoothing) to handle unseen words.
+- Predicted the topic with the highest log probability.
 
-east(X, Y) => west(Y, X).
-west(X, Y) => east(Y, X).
+The classifier got accuracy of 96% on the test set, which is quite good in my opinion.
+V ACTUAL      tech politics business entertainment sport
+tech            20        1        0             0     0
+politics         0       20        1             1     0
+business         0        0       22             0     0
+entertainment    0        0        0            18     0
+sport            0        1        0             0    16 
 
-% tests
--west(Mordor, Gondor)
-
-### Transistivity
-east(MORDOR, GONDOR).
-east(GONDOR, SHIRE).
-
-(east(X, Y) & east(Y, Z)) => east(X, Z).
-
-% tests
--east(MORDOR, SHIRE).
+Here is the confusion matrix showing the expected and actual results. 
+If the actual and V term match, that means that the guess was right.
