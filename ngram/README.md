@@ -1,0 +1,10 @@
+## Building an N-Gram model
+My text was trained on a combination of the estonian epic Kalewipoeg (the original), the old and the new testament.
+In total about a million words.
+
+bigram: Neitsile ei ole võtnud võõrad viisid sellele , siis kivi lendamaie : Hea on , Pane tähele ning uppus .  Aga kui nõgi mehe varjukene .  16 Siis teie osaks parempoolne saps ! ” Õnnistussõnad 22 Vagade üle selle kolme nädala püha .  Ja ta on langemas , ning ütlesid Absalom kutsus Kedesisse kokku ja noomimine annavad teie olge oma poega Hobu surmassa suikunud , aga mina ütlen teile sellepärast taas , asuti rünnakule tema sajatust ja ärge otsige Peetelit , 3 Mina olen püha !  Need on rääkinud salajas midagi selle nende vastu ja nüüd
+trigram: on kalduvus minust ära ! ” 17 Ja Joosua läks selsamal päeval enese puhastamiseks preestrile kogudusetelgi ukse ette .  18 Issand on oma võitud mehe vastu .  4 Kummatigi kuule Issanda sõnu .  15 Kõverat ei saa ta püsida , vaid , ehkki ihulikult eemal , keda ta armastab õiglast kohut neile , kes oli põgenenud Issanda telgi juurde ja ohverdas selle peal oli oma venna iga kadunud asjaga , põletatagu tulega , et sina suudad seletusi anda ja jõuk oli juba Egiptuses .  13 Sest ma näen su taevast , Sõrmed ukse sagarasse , Tahtis
+quadrgram: Deboora ja Baaraki võidulaul 1 Ja Deboora ning Baarak , Abinoami poeg , oli võimsa sõjaväe ja laevastikuga Tripolise sadama kaudu sisse purjetanud , 2 oli vallutanud maa ning tapnud Antiohhose ja Lüüsiase , tema eestkostja ja riigihoidja .  Kummalgi oli kreeka sõjavägi , sada kümme tuhat jalameest , peale väetite laste .  38 Sest nii nagu olid Noa päevad , nõnda on ka minu sõnaga , mis lähtub Jumala suust. ” 5 Siis ta süütas tulega tõrvikud ja laskis rebased lahti vilistite viljapõldudele , süüdates nõnda põlema niihästi nabrad kui lõikamata vilja , viinamäed ja õlipuud ,
+
+I created both n-gram functions to be flexible and accomodate any number of context lengths, although,
+if the context length is longer than 4, the model will just find exact sentences from the text. The reason is the lack of data in the model.

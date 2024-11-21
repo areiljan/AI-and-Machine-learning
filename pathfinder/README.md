@@ -26,7 +26,6 @@ A* combines into itself Djikstras algorithm, which entails a constant monitoring
 
 # Verdict 
 Something interesting happens with greedy search. I am not sure whether it happens because the ai is set up wrong or because of the map design, but the greedy bot clearly does not take the direct route to the diamond.
-
-I just took a look at the projected optimal results and yes, it is a part of the map design.
+After taking a careful look at the map, yes there is an obstacle in the middle of the map, the algorithm works well.
 
 
