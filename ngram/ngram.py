@@ -3,6 +3,7 @@ import random
 import tiktoken
 from nltk.tokenize import sent_tokenize, word_tokenize
 from collections import defaultdict, Counter
+import re
 
 enc = tiktoken.get_encoding("gpt2")
 nltk.download("punkt")
@@ -16,6 +17,17 @@ def tokenize(text):
         tokens.append(EOS)
         for token in word_tokenize(sentence):
             tokens.append(token)
+    tokens.append(EOS)
+    return tokens
+
+def subword_tokenize(text):
+    print('subword tokenizing')
+    enc = tiktoken.get_encoding("gpt2")
+    tokens = []
+    for sentence in sent_tokenize(text):
+        tokens.append(EOS)
+        subword_tokens = enc.encode(sentence)
+        tokens.append(enc.decode(subword_tokens))
     tokens.append(EOS)
     return tokens
 
@@ -82,17 +94,20 @@ def generate_ngram_text(max_length, ngrams):
 
 
 with open("bible.txt", encoding="UTF-8") as f:
-    tokens = tokenize(f.read())
+    # tokens = decode_tokens(tokenize_subwords(f.read().replace('[^-?\d+$]', '')))
+    text = f.read()
+    clean_text = re.sub(r"[\b-?\d+\b]", " ", text)
+    tokens = subword_tokenize(clean_text)
     N = len(tokens)
     print(N, "tokens")
 
 print('Generating holy yap...')
 
 bigram = build_bigram(tokens)
-print('bigram: ' + generate_bigram_text(100, bigram))
+print('bigram: ' + generate_bigram_text(10, bigram))
 
 trigram = build_ngram(tokens, 3)
-print('trigram: ' + generate_ngram_text(100, trigram))
+print('trigram: ' + generate_ngram_text(10, trigram))
 
 quadrgram = build_ngram(tokens, 4)
-print('quadrgram: ' + generate_ngram_text(100, quadrgram))
+print('quadrgram: ' + generate_ngram_text(10, quadrgram))
